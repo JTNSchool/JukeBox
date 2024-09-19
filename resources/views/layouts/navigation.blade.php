@@ -10,12 +10,12 @@
                         {{ __('Home') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('library')" :active="request()->routeIs('library')">
-                        {{ __('Library') }}
-                    </x-nav-link>
-
                     <x-nav-link :href="route('explore')" :active="request()->routeIs('explore')">
                         {{ __('Explore') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('library')" :active="request()->routeIs('library')">
+                        {{ __('Library') }}
                     </x-nav-link>
                 </div>
             </div>

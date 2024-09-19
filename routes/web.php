@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\SongController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { /* wait until path is  localhost/  */
@@ -16,9 +18,12 @@ Route::get('/library', function () {
     return view('library');
 })->middleware(['auth', 'verified'])->name('library');
 
-Route::get('/explore', function () {
-    return view('explore');
-})->middleware(['auth', 'verified'])->name('explore');
+
+Route::get('/explore', [SongController::class, 'index'])->middleware(['auth', 'verified'])->name('explore');
+Route::post('/playlists', [PlaylistController::class, 'store'])->name('playlists.store');
+Route::get('/playlists/create', [PlaylistController::class, 'create'])->name('playlists.create');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

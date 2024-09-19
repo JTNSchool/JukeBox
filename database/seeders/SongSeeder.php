@@ -16,19 +16,19 @@ class SongSeeder extends Seeder
 
         DB::table('songs')->insert([
             'name' => "Bad Liar",
-            'creator' => "Imagine Dragons",
+            'artist' => "Imagine Dragons",
             'duration' => 260,
         ]);
 
         DB::table('songs')->insert([
             'name' => "I Ain't Worried",
-            'creator' => "OneRepublic",
+            'artist' => "OneRepublic",
             'duration' => 239,
         ]);
 
         DB::table('songs')->insert([
             'name' => "A Little Messed Up",
-            'creator' => "June",
+            'artist' => "June",
             'duration' => 168,
         ]);
 
