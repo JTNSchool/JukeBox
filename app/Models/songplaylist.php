@@ -5,15 +5,16 @@ namespace App\Models;
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Playlist extends Model
+class songplaylist extends Model
 {
     // use HasFactory;
 
-    protected $table = 'playlists';
+    protected $table = 'songplaylist';
     public $timestamps = false;
 
 
     protected $fillable = [
-        'name'
+        'playlist',
+        'song'
     ];
 }

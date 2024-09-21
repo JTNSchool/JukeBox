@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\songPlaylistController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { /* wait until path is  localhost/  */
@@ -14,14 +15,20 @@ Route::get('/home', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('home');
 
-Route::get('/library', function () {
-    return view('library');
-})->middleware(['auth', 'verified'])->name('library');
-
 
 Route::get('/explore', [SongController::class, 'index'])->middleware(['auth', 'verified'])->name('explore');
-Route::post('/playlists', [PlaylistController::class, 'store'])->name('playlists.store');
-Route::get('/playlists/create', [PlaylistController::class, 'create'])->name('playlists.create');
+
+Route::get('/select-playlist/{songid}', [songPlaylistController::class, 'loadplaylists'])->middleware(['auth', 'verified'])->name('songplaylist.loadplaylists');
+Route::get('/add-to-playlist/{playlistid}/{songid}', [songPlaylistController::class, 'addsongtoplaylist'])->middleware(['auth', 'verified'])->name('songplaylist.addsongtoplaylist');
+
+
+Route::get('/playlists', [PlaylistController::class, 'index'])->middleware(['auth', 'verified'])->name('library');
+Route::post('/playlists/store', [PlaylistController::class, 'store'])->middleware(['auth', 'verified'])->name('playlists.store');
+Route::get('/playlists/create', [PlaylistController::class, 'create'])->middleware(['auth', 'verified'])->name('playlists.create');
+Route::get('/playlists/{id}', [songPlaylistController::class, 'showsongsfromplaylist'])->middleware(['auth', 'verified'])->name('playlists.show');
+Route::delete('/playlists/{id}', [PlaylistController::class, 'destroy'])->middleware(['auth', 'verified'])->name('playlists.delete');
+
+
 
 
 

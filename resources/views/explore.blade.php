@@ -17,7 +17,7 @@
 
                         <p class="text-white">{{gmdate('i:s', $song->duration)}}</p>
                             
-                            <button class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 rounded">
+                            <button href="{{ route('songplaylist.loadplaylists', ['songid' => $song->id]) }}" class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 rounded">
                                 Add to playlist
                             </button>
                         </div>

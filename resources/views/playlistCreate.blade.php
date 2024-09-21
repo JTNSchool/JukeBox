@@ -11,13 +11,11 @@
                 <form method="POST" action="{{ route('playlists.store') }}">
                     @csrf
 
-                    <!-- Playlist Name Input -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-300">Playlist Name</label>
                         <input id="name" type="text" name="name" class="mt-1 block w-full bg-gray-700 text-white border-gray-600 rounded" required>
                     </div>
 
-                    <!-- Submit Button -->
                     <div class="mt-4">
                         <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
                             Create Playlist
