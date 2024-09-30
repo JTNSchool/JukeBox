@@ -28,7 +28,7 @@ Route::get('/playlists/create', [PlaylistController::class, 'create'])->middlewa
 Route::get('/playlists/{id}', [songPlaylistController::class, 'showsongsfromplaylist'])->middleware(['auth', 'verified'])->name('playlists.show');
 Route::delete('/playlists/{id}', [PlaylistController::class, 'destroy'])->middleware(['auth', 'verified'])->name('playlists.delete');
 
-
+Route::delete('/delete-song/{playlistid}/{songid}', [songPlaylistController::class, 'destroy'])->middleware(['auth', 'verified'])->name('songplaylist.delete');
 
 
 

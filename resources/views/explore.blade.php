@@ -15,11 +15,12 @@
                                 <p class="text-gray-400">{{$song->artist}}</p>
                             </div>
 
-                        <p class="text-white">{{gmdate('i:s', $song->duration)}}</p>
-                            
-                            <button href="{{ route('songplaylist.loadplaylists', ['songid' => $song->id]) }}" class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 rounded">
+                            <p class="text-white">{{gmdate('i:s', $song->duration)}}</p>
+                                
+                            <a href="/select-playlist/{{ $song->id }}" class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 rounded">
                                 Add to playlist
-                            </button>
+                            </a>
+
                         </div>
                     @endforeach
                 </div>

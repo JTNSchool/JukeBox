@@ -39,8 +39,11 @@ class PlaylistController extends Controller
             'name' => 'required|string|max:20',
         ]);
 
+        $userid = Auth::id();
+        
         Playlist::create([
             'name' => $request->name,
+            'user' => $userid,
         ]);
 
         return redirect()->route('library')->with('success', 'Playlist created successfully!');

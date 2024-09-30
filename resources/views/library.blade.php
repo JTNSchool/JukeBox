@@ -10,9 +10,11 @@
             <div class="p-6 bg-gray-800 rounded-lg shadow-lg">
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                     @foreach($playlists as $playlist)
-                        <a href="{{ route('playlists.show', ['id' => $playlist->id]) }}" class="flex items-center justify-center px-4 py-6 bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105">
-                            {{$playlist->name}}
-                        </a>
+                        @if($playlist->user == Auth::id())
+                            <a href="{{ route('playlists.show', ['id' => $playlist->id]) }}" class="flex items-center justify-center px-4 py-6 bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105">
+                                {{$playlist->name}}
+                            </a>
+                        @endif
                     @endforeach
                     <a href="{{ route('playlists.create') }}" class="flex items-center justify-center px-4 py-6 bg-green-500 hover:bg-green-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105">
                         New Playlist

@@ -14,6 +14,12 @@ class Playlist extends Model
 
 
     protected $fillable = [
-        'name'
+        'name',
+        'user'
     ];
+
+    public function songs()
+    {
+        return $this->belongsToMany(Song::class, 'songplaylist', 'playlist_id', 'song_id');
+    }
 }
