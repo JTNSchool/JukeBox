@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\songplaylist;
 use App\Models\Playlist;
 use App\Models\Song;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class songPlaylistController extends Controller
@@ -14,6 +15,9 @@ class songPlaylistController extends Controller
     {
         $playlist = Playlist::findOrFail($id);
         $songs = $playlist->songs;
+
+        if ($playlist->user != Auth::id()) { return redirect()->route('library'); }
+
         return view('playlist', compact('songs', 'playlist'));
     }
 

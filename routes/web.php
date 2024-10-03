@@ -16,7 +16,7 @@ Route::get('/home', function () {
 })->middleware(['auth', 'verified'])->name('home');
 
 
-Route::get('/explore', [SongController::class, 'index'])->middleware(['auth', 'verified'])->name('explore');
+Route::get('/explore/{genre}', [SongController::class, 'index'])->middleware(['auth', 'verified'])->name('explore');
 
 Route::get('/select-playlist/{songid}', [songPlaylistController::class, 'loadplaylists'])->middleware(['auth', 'verified'])->name('songplaylist.loadplaylists');
 Route::get('/add-to-playlist/{playlistid}/{songid}', [songPlaylistController::class, 'addsongtoplaylist'])->middleware(['auth', 'verified'])->name('songplaylist.addsongtoplaylist');
@@ -30,6 +30,8 @@ Route::delete('/playlists/{id}', [PlaylistController::class, 'destroy'])->middle
 
 Route::delete('/delete-song/{playlistid}/{songid}', [songPlaylistController::class, 'destroy'])->middleware(['auth', 'verified'])->name('songplaylist.delete');
 
+Route::get('/playlists/rename/{id}', [PlaylistController::class, 'rename'])->middleware(['auth', 'verified'])->name('playlists.rename');
+Route::post('/playlists/ChangeName/{id}', [PlaylistController::class, 'changeName'])->middleware(['auth', 'verified'])->name('playlists.changeName');
 
 
 Route::middleware('auth')->group(function () {

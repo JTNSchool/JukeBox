@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="relative flex justify-between items-center">
             <div class="flex-shrink-0">
-                <a href="{{ route('explore') }}" class="inline-block px-2 py-3 bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105">
+                <a href="{{ route('explore', ['genre' => 'all']) }}" class="inline-block px-2 py-3 bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105">
                     Back to explore
                 </a>
             </div>

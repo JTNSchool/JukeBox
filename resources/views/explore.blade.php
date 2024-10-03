@@ -2,6 +2,16 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-200 leading-tight">
             {{ __('Explore') }}
+
+            <a href="{{ route('explore', ['genre' => 'all']) }}" class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 rounded">
+                All
+            </a>
+
+            @foreach($AllSongs->pluck('genre')->unique() as $genre)
+                <a href="{{ route('explore', ['genre' => $genre]) }}" class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 rounded">
+                    {{ $genre }}
+                </a>
+            @endforeach
         </h2>
     </x-slot>
 
@@ -16,6 +26,7 @@
                             </div>
 
                             <p class="text-white">{{gmdate('i:s', $song->duration)}}</p>
+                            <p class="text-white">{{$song->genre}}</p>
                                 
                             <a href="/select-playlist/{{ $song->id }}" class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 rounded">
                                 Add to playlist

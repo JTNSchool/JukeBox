@@ -10,7 +10,7 @@
                         {{ __('Home') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('explore')" :active="request()->routeIs('explore')">
+                    <x-nav-link :href="route('explore', ['genre' => 'all'])">
                         {{ __('Explore') }}
                     </x-nav-link>
 

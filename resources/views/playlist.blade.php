@@ -7,27 +7,26 @@
                 </a>
             </div>
 
-            <h2 class="absolute left-1/3 transform -translate-x-1/2 font-semibold text-xl text-gray-200 leading-tight">
+            <a href="{{ route('playlists.rename', ['id' => $playlist->id]) }}" class="absolute left-1/3 transform -translate-x-1/2 font-semibold text-xl text-gray-200 leading-tight">
                 {{ $playlist->name }}
-            </h2>
+            </a>
 
             <h2 class="absolute left-2/3 transform -translate-x-1/2 font-semibold text-xl text-gray-200 leading-tight">
                 {{gmdate('i:s', $songs->sum('duration'))}}
             </h2>
+            
 
-            @if($playlist->user == Auth::id())
                 
-                <form action="{{ route('playlists.delete', ['id' => $playlist->id]) }}" method="POST" class="flex-shrink-0">
-                    @csrf
-                    @method('DELETE')
+            <form action="{{ route('playlists.delete', ['id' => $playlist->id]) }}" method="POST" class="flex-shrink-0">
+                @csrf
+                @method('DELETE')
 
-                    <button type="submit" 
-                        class="inline-block px-2 py-3 bg-red-500 hover:bg-red-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105"
-                        onclick="return confirm('Are you sure you want to delete this playlist?');">
-                        Delete Playlist
-                    </button>
-                </form>
-            @endif
+                <button type="submit" 
+                    class="inline-block px-2 py-3 bg-red-500 hover:bg-red-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105"
+                    onclick="return confirm('Are you sure you want to delete this playlist?');">
+                    Delete Playlist
+                </button>
+            </form>
         </div>
     </x-slot>
 
@@ -44,16 +43,14 @@
                                     <p class="text-gray-400">{{$song->artist}}</p>
                                 </div>
                                 <p class="text-white">{{gmdate('i:s', $song->duration)}}</p>
-                                @if($playlist->user == Auth::id())
-                                    <form action="{{ route('songplaylist.delete', ['songid' => $song->id, 'playlistid' => $playlist->id]) }}" method="POST" class="flex-shrink-0">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button type="submit" class="inline-block px-2 py-3 bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105">
-                                            Remove song
-                                        </button>
-                                    </form>
-                                @endif
+                                <p class="text-white">{{$song->genre}}</p>
+                                <form action="{{ route('songplaylist.delete', ['songid' => $song->id, 'playlistid' => $playlist->id]) }}" method="POST" class="flex-shrink-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="inline-block px-2 py-3 bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105">
+                                        Remove song
+                                    </button>
+                                </form>
                             </div>
                         @endforeach
                     @else
