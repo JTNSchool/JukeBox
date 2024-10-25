@@ -1,14 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-            Rename {{$playlist->name}}
+            Rename {{ $playlist['name'] }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> 
             <div class="p-6 bg-gray-800 shadow sm:rounded-lg">
-                <form method="POST" action="{{ route('playlists.changeName', ['id' => $playlist->id]) }}">
+                @if(App\Models\Playlist::find($playlist['id']))
+                    <form method="POST" action="{{ route('playlists.changeName', ['id' => $playlist['id']]) }}">
+                        <p>adagfias </p>
+                @else
+                    <form method="POST" action="{{ route('session.changeName', ['id' => $playlist['id']]) }}">
+                @endif
+                
                     @csrf
 
                     <div>

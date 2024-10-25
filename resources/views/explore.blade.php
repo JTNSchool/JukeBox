@@ -6,6 +6,7 @@
             <a href="{{ route('explore', ['genre' => 'all']) }}" class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 rounded">
                 All
             </a>
+            @php dump(session()->get('sessionPlaylists', [])) @endphp
 
             @foreach($AllSongs->pluck('genre')->unique() as $genre)
                 <a href="{{ route('explore', ['genre' => $genre]) }}" class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 rounded">

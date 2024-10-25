@@ -13,12 +13,12 @@
         </div>
     </x-slot>
 
-
+    @php dump(session()->get('sessionPlaylists', [])) @endphp
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 bg-gray-800 rounded-lg shadow-lg">
-                @if(count($playlists) > 0) 
+                @if(count($playlists) > 0 || count(session()->get('sessionPlaylists', [])) > 0)
                     @foreach($playlists as $playlist)
                         @if($playlist->user == Auth::id())
                             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -27,6 +27,14 @@
                                 </a>
                             </div>
                         @endif
+                    @endforeach
+
+                    @foreach(session()->get('sessionPlaylists', []) as $playlist)
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                            <a href="{{ route('songplaylist.addsongtosessionplaylist', ['songid' => $song->id, 'playlistid' => $playlist['id']]) }}" class="flex items-center justify-center px-4 py-6 bg-yellow-500 hover:bg-yellow-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105">
+                                {{$playlist['name']}}
+                            </a>
+                        </div>
                     @endforeach
                 @endif
                 </div>
